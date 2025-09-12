@@ -41,37 +41,37 @@ wget https://raw.githubusercontent.com/GitHub30/WebDAVJSON/refs/heads/main/index
 
 ### List files
 ```bash
-curl http://localhost/index.php
+curl http://localhost/
 ```
 
 ### Search files (partial match)
 ```bash
-curl "http://localhost/index.php?q=abc"
+curl "http://localhost/?q=abc"
 ```
 
 ### Download file
 ```bash
-curl -O http://localhost/index.php?filename=abc.txt
+curl -O http://localhost/?filename=abc.txt
 ```
 
 ### Download file (as attachment)
 ```bash
-curl -OJ "http://localhost/index.php?download&filename=abc.txt"
+curl -OJ "http://localhost/?download&filename=abc.txt"
 ```
 
 ### Upload file (multipart/form-data)
 ```bash
-curl -F "file=@abc.txt" http://localhost/index.php
+curl -F "file=@abc.txt" http://localhost/
 ```
 
 ### Upload file (PUT, binary)
 ```bash
-curl -X PUT --data-binary @abc.txt "http://localhost/index.php?filename=abc.txt"
+curl -X PUT --data-binary @abc.txt "http://localhost/?filename=abc.txt"
 ```
 
 ### Delete file
 ```bash
-curl -X DELETE "http://localhost/index.php?filename=abc.txt"
+curl -X DELETE "http://localhost/?filename=abc.txt"
 ```
 
 ## Authentication (API Key)
@@ -79,7 +79,7 @@ If you set a value for `$api_key` in `index.php`, the header `Authorization: Bea
 
 Example:
 ```bash
-curl -H "Authorization: Bearer your_api_key" http://localhost/index.php
+curl -H "Authorization: Bearer your_api_key" http://localhost/
 ```
 
 ## Allowed Extensions
