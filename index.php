@@ -1,6 +1,7 @@
 <?php
 
 cors();
+authenticate();
 
 switch (strtoupper($_SERVER['REQUEST_METHOD'])) {
     case 'GET':
@@ -28,6 +29,16 @@ function cors()
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: *");
     header("Access-Control-Allow-Headers: *");
+}
+
+function authenticate() {
+    $api_key = '';
+    if ($api_key) {
+        if ($_SERVER['HTTP_AUTHORIZATION'] !== "Bearer $api_key") {
+            http_response_code(401);
+            exit();
+        }
+    }
 }
 
 function assert_filename($filename)
