@@ -16,7 +16,7 @@ switch (strtoupper($_SERVER['REQUEST_METHOD'])) {
         break;
     case 'DELETE':
         if (isset($_GET['filename'])) {
-            download($_GET['filename']);
+            delete($_GET['filename']);
         }
         break;
     default:
