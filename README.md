@@ -18,6 +18,12 @@ node index.mjs
 # await fetch('https://localhost:8443/?filename=foo.txt', {method: 'PUT', body: 'foobar'})
 ```
 
+## Linux Setup
+
+```bash
+wget https://raw.githubusercontent.com/GitHub30/WebDAVJSON/refs/heads/main/index.php
+```
+
 ## API Endpoints
 
 | Method   | Path                        | Description             |
