@@ -9,6 +9,18 @@ WebDAVJSON is a simple PHP script that provides file management APIs. It support
 - File upload, download, and delete
 - Extension restrictions
 
+## Windows Setup
+
+```powershell
+winget install FiloSottile.mkcert stunnel PHP.PHP.8.4
+mkcert -install
+mkcert localhost
+mkcert -install
+mkcert localhost
+& "C:\Program Files (x86)\stunnel\bin\stunnel.exe" .\stunnel.conf
+php -S localhost:8000
+```
+
 ## API Endpoints
 
 | Method   | Path                        | Description             |
