@@ -36,6 +36,11 @@ curl "http://localhost/index.php?q=abc"
 curl -O http://localhost/index.php?filename=abc.txt
 ```
 
+### Download file (as attachment)
+```bash
+curl -OJ "http://localhost/index.php?download&filename=abc.txt"
+```
+
 ### Upload file (multipart/form-data)
 ```bash
 curl -F "file=@abc.txt" http://localhost/index.php
