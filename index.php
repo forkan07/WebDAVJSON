@@ -71,6 +71,9 @@ function download($filename)
 {
     if (file_exists($filename)) {
         assert_filename($filename);
+        if (isset($_GET['download'])) {
+            header('Content-Disposition: attachment; filename="' . rawurlencode($filename) . '"; filename*=UTF-8\'\'' . rawurlencode($filename));
+        }
         header('Content-Type: ' . mime_content_type($filename));
         readfile($filename);
     } else {
