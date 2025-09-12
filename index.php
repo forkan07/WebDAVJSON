@@ -60,8 +60,11 @@ function assert_filename($filename)
 function ls()
 {
     header('Content-Type: application/json');
-    $files = array_values(array_diff(scandir('.'), array('..', '.')));
-    echo json_encode($files, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    $files = array_diff(scandir('.'), array('..', '.'));
+    if (isset($_GET['q'])) {
+        $files = array_filter($files, fn($file) => str_contains($file, $_GET['q']));
+    }
+    echo json_encode(array_values($files), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 }
 
 function download($filename)
