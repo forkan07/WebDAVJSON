@@ -49,7 +49,7 @@ function assert_filename($filename)
 function ls()
 {
     header('Content-Type: application/json');
-    $files = array_diff(scandir('.'), array('..', '.'));
+    $files = array_values(array_diff(scandir('.'), array('..', '.')));
     echo json_encode($files, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 }
 
