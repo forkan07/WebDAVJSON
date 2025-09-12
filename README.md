@@ -1,6 +1,6 @@
 # WebDAVJSON
 
-WebDAVJSON is a simple PHP script that provides file management APIs. It supports CORS, optional API key authentication, upload with extension restrictions, and JSON response for file listing.
+WebDAVJSON is a simple PHP/Node.js script that provides file management APIs. It supports CORS, optional API key authentication, upload with extension restrictions, and JSON response for file listing.
 
 ## Features
 - CORS support
