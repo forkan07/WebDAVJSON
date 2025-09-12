@@ -12,12 +12,10 @@ WebDAVJSON is a simple PHP script that provides file management APIs. It support
 ## Windows Setup
 
 ```powershell
-winget install FiloSottile.mkcert PHP.PHP.8.4
-mkcert -install
-mkcert localhost
-mkcert -install
-mkcert localhost
-php -S localhost:8000
+npm i
+node index.mjs
+# await fetch('https://localhost:8443/').then(r=>r.json())
+# await fetch('https://localhost:8443/?filename=foo.txt', {method: 'PUT', body: 'foobar'})
 ```
 
 ## API Endpoints
