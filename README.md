@@ -12,7 +12,7 @@ WebDAVJSON is a simple PHP/Node.js script that provides file management APIs. It
 ## Windows Setup
 
 ```powershell
-npm i
+npm install mime-types
 node index.mjs
 # await fetch('https://localhost:8443/').then(r=>r.json())
 # await fetch('https://localhost:8443/?filename=foo.txt', {method: 'PUT', body: 'foobar'})
