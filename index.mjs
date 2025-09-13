@@ -145,8 +145,8 @@ if (fs.existsSync(CERT_PATH) && fs.existsSync(KEY_PATH)) {
     key: fs.readFileSync(KEY_PATH)
   };
   const server = createSecureServer(options, requestHandler).listen(process.env.PORT || 8443);
-  console.log(`HTTPS Server running at https://localhost:${server.address()?.port}`);
+  console.log('https://localhost:' + server.address()?.port);
 } else {
   const server = createInsecureServer(requestHandler).listen(process.env.PORT || 8080);
-  console.log(`HTTP Server running at http://localhost:${server.address()?.port} (TLS cert/key not found or unreadable)`);
+  console.log('http://localhost:' + server.address()?.port);
 }
