@@ -1,0 +1,19 @@
+name: Node.js tests
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show PHP/Node/NPM versions
+        run: |
+          php -v
+          node -v
+          npm -v
+
+      - name: Run tests
+        run: npm test
