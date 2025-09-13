@@ -8,6 +8,7 @@ WebDAVJSON is a simple PHP/Node.js script that provides file management APIs. It
 - File listing (JSON)
 - File upload, download, and delete
 - Extension restrictions
+- Single-file program
 
 ## Windows Setup
 
