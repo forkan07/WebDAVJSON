@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: node --test --test-reporter=spec --test-reporter-destination="$GITHUB_STEP_SUMMARY" tests/nodejs.test.mjs
+      - run: node --test --test-reporter=tap --test-reporter-destination="$GITHUB_STEP_SUMMARY" tests/nodejs.test.mjs
