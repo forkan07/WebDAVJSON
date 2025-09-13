@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import mime from 'mime-types';
 import { createServer as createSecureServer } from 'https';
+import { createServer as createInsecureServer } from 'http';
 import url from 'url';
 
 const allowedExtensions = ['txt','jpg','png','webp','heic','gif','pdf','docx','xlsx','zip','mp4','gz'];
@@ -90,16 +91,9 @@ function del(req, res, filename) {
   }
 }
 
-const CERT_PATH = process.env.CERT_PATH || 'localhost.pem';
-const KEY_PATH = process.env.KEY_PATH || 'localhost-key.pem';
-const PORT = process.env.PORT || 8443;
 
-const options = {
-  cert: fs.readFileSync(CERT_PATH),
-  key: fs.readFileSync(KEY_PATH)
-};
-
-createSecureServer(options, (req, res) => {
+// Request handler reused by both HTTP and HTTPS servers
+function requestHandler(req, res) {
   cors(res);
   if (!authenticate(req, res)) return;
   const parsedUrl = url.parse(req.url, true);
@@ -125,6 +119,19 @@ createSecureServer(options, (req, res) => {
     res.writeHead(405);
     res.end();
   }
-}).listen(PORT);
+}
 
-console.log(`HTTPS Server running at https://localhost:${PORT}`);
+const CERT_PATH = process.env.CERT_PATH || 'localhost.pem';
+const KEY_PATH = process.env.KEY_PATH || 'localhost-key.pem';
+
+if (fs.existsSync(CERT_PATH) && fs.existsSync(KEY_PATH)) {
+  const options = {
+    cert: fs.readFileSync(CERT_PATH),
+    key: fs.readFileSync(KEY_PATH)
+  };
+  const server = createSecureServer(options, requestHandler).listen(process.env.PORT || 8443);
+  console.log(`HTTPS Server running at https://localhost:${server.address()?.port}`);
+} else {
+  const server = createInsecureServer(requestHandler).listen(process.env.PORT || 8080);
+  console.log(`HTTP Server running at http://localhost:${server.address()?.port} (TLS cert/key not found or unreadable)`);
+}
