@@ -8,7 +8,7 @@ switch (strtoupper($_SERVER['REQUEST_METHOD'])) {
         if (isset($_GET['filename'])) {
             download($_GET['filename']);
         } else {
-            ls();
+            ls($_GET['directory'] ?? '.');
         }
         break;
     case 'POST':
@@ -43,7 +43,7 @@ function authenticate() {
 
 function assert_filename($filename)
 {
-    if (!preg_match('/^[\w.-]+$/', $filename)) {
+    if (!preg_match('/^[\w.-/]+$/', $filename)) {
         http_response_code(400);
         exit();
     }
@@ -57,10 +57,10 @@ function assert_filename($filename)
     }
 }
 
-function ls()
+function ls($directory)
 {
     header('Content-Type: application/json');
-    $files = array_diff(scandir('.'), array('..', '.'));
+    $files = array_diff(scandir($directory), array('..', '.'));
     if (isset($_GET['q'])) {
         $files = array_filter($files, fn($file) => str_contains($file, $_GET['q']));
     }

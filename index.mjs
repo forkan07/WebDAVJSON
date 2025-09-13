@@ -42,7 +42,7 @@ function authenticate(req, res) {
 }
 
 function assertFilename(filename, res) {
-  if (!/^[\w.-]+$/.test(filename)) {
+  if (!/^[\w.-/]+$/.test(filename)) {
     res.writeHead(400);
     res.end();
     return false;
@@ -59,7 +59,7 @@ function assertFilename(filename, res) {
 function ls(req, res, query) {
   cors(res);
   res.setHeader('Content-Type', 'application/json');
-  let files = fs.readdirSync('.').filter(f => f !== '.' && f !== '..');
+  let files = fs.readdirSync(query.directory ?? '.').filter(f => f !== '.' && f !== '..');
   if (query.q) {
     files = files.filter(f => f.includes(query.q));
   }
