@@ -1,11 +1,26 @@
 import fs from 'fs';
 import path from 'path';
-import mime from 'mime-types';
 import { createServer as createSecureServer } from 'https';
 import { createServer as createInsecureServer } from 'http';
 import url from 'url';
 
 const allowedExtensions = ['txt','jpg','png','webp','heic','gif','pdf','docx','xlsx','zip','mp4','gz'];
+
+function getContentType(filename) {
+  return {
+    txt: 'text/plain',
+    png: 'image/png',
+    jpg: 'image/jpeg',
+    jpeg: 'image/jpeg',
+    webp: 'image/webp',
+    heic: 'image/heic',
+    gif: 'image/gif',
+    mp4: 'video/mp4',
+    pdf: 'application/pdf',
+    zip: 'application/zip',
+    gz: 'application/gzip',
+  }[path.extname(filename).slice(1).toLowerCase()]
+}
 
 function cors(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -57,7 +72,7 @@ function download(req, res, filename, query) {
     if (query.download !== undefined) {
       res.setHeader('Content-Disposition', `attachment; filename="${encodeURIComponent(filename)}"; filename*=UTF-8''${encodeURIComponent(filename)}`);
     }
-    res.setHeader('Content-Type', mime.lookup(filename) || 'application/octet-stream');
+    if (getContentType(filename)) res.setHeader('Content-Type', getContentType(filename));
     fs.createReadStream(filename).pipe(res);
   } else {
     res.writeHead(404);

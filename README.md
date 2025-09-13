@@ -16,7 +16,6 @@ WebDAVJSON is a simple PHP/Node.js script that provides file management APIs. It
 winget install FiloSottile.mkcert Node.js --silent
 mkcert -install
 mkcert localhost
-npm install mime-types
 node index.mjs
 # await fetch('https://localhost:8443/').then(r=>r.json())
 # await fetch('https://localhost:8443/?filename=foo.txt', {method: 'PUT', body: 'foobar'})
