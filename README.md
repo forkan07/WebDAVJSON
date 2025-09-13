@@ -1,3 +1,6 @@
+[![PHP Tests](https://github.com/GitHub30/WebDAVJSON/actions/workflows/php-test.yml/badge.svg?branch=main)](https://github.com/GitHub30/WebDAVJSON/actions/workflows/php-test.yml)
+[![Node.js Tests](https://github.com/GitHub30/WebDAVJSON/actions/workflows/nodejs-test.yml/badge.svg?branch=main)](https://github.com/GitHub30/WebDAVJSON/actions/workflows/nodejs-test.yml)
+
 # WebDAVJSON
 
 WebDAVJSON is a simple PHP/Node.js script that provides file management APIs. It supports CORS, optional API key authentication, upload with extension restrictions, and JSON response for file listing.
