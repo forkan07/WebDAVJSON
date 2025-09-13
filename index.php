@@ -43,7 +43,7 @@ function authenticate() {
 
 function assert_filename($filename)
 {
-    if (!preg_match('/^[\w.-/]+$/', $filename)) {
+    if (!preg_match('/^[\w.-\/]+$/', $filename)) {
         http_response_code(400);
         exit();
     }
