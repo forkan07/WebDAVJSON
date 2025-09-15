@@ -66,6 +66,7 @@ function ls(req, res, query) {
   }
   res.end(JSON.stringify(files, null, 2));
 }
+
 function download(req, res, filename, query) {
   if (fs.existsSync(filename)) {
     if (!assertFilename(filename, res)) return;
