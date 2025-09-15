@@ -66,7 +66,6 @@ function ls(req, res, query) {
   }
   res.end(JSON.stringify(files, null, 2));
 }
-
 function download(req, res, filename, query) {
   if (fs.existsSync(filename)) {
     if (!assertFilename(filename, res)) return;
@@ -85,11 +84,24 @@ function upload(req, res, query) {
   // ファイルアップロードはform-data解析が必要。ここでは簡易的にPUTのみ対応
   if (query.filename) {
     if (!assertFilename(query.filename, res)) return;
-    let data = '';
-    req.on('data', chunk => { data += chunk; });
-    req.on('end', () => {
-      fs.writeFileSync(query.filename, data);
+    // Stream the raw request body to disk to support binary uploads.
+    const dest = query.filename;
+    const writeStream = fs.createWriteStream(dest, { flags: 'w' });
+    req.pipe(writeStream);
+    writeStream.on('finish', () => {
       res.end('OK');
+    });
+    writeStream.on('error', (err) => {
+      console.error('Write stream error', err);
+      try { fs.unlinkSync(dest); } catch (e) {}
+      res.writeHead(500);
+      res.end();
+    });
+    req.on('error', (err) => {
+      console.error('Request stream error', err);
+      try { fs.unlinkSync(dest); } catch (e) {}
+      res.writeHead(500);
+      res.end();
     });
   } else {
     res.writeHead(400);
