@@ -81,10 +81,9 @@ function download(req, res, filename, query) {
 }
 
 function upload(req, res, query) {
-  // ファイルアップロードはform-data解析が必要。ここでは簡易的にPUTのみ対応
+  // Handle query.filename -> raw body upload (PUT-like)
   if (query.filename) {
     if (!assertFilename(query.filename, res)) return;
-    // Stream the raw request body to disk to support binary uploads.
     const dest = query.filename;
     const writeStream = fs.createWriteStream(dest, { flags: 'w' });
     req.pipe(writeStream);
@@ -103,9 +102,57 @@ function upload(req, res, query) {
       res.writeHead(500);
       res.end();
     });
-  } else {
-    res.writeHead(400);
-    res.end();
+    return;
+  }
+
+  // If Content-Type is multipart/form-data, parse and write uploaded files.
+  const contentType = req.headers['content-type'] || '';
+  if (contentType.startsWith('multipart/form-data')) {
+    const m = contentType.match(/boundary=(?:"?)([^;\s"]+)(?:"?)/i);
+    if (!m) {
+      res.writeHead(400);
+      res.end('Missing boundary');
+      return;
+    }
+    const boundary = '--' + m[1];
+    // Collect raw body (this is OK for typical uploads in tests; for large files a streaming parser would be better)
+    const chunks = [];
+    req.on('data', (chunk) => chunks.push(chunk));
+    req.on('end', () => {
+      const buffer = Buffer.concat(chunks);
+      const parts = buffer.toString('binary').split(boundary);
+      for (let part of parts) {
+        part = part.trim();
+        if (!part || part === '--') continue;
+        // Separate headers and body
+        const idx = part.indexOf('\r\n\r\n');
+        if (idx === -1) continue;
+        const rawHeaders = part.slice(0, idx).split('\r\n');
+        let disposition = rawHeaders.find(h => h.toLowerCase().startsWith('content-disposition')) || '';
+        const nameMatch = disposition.match(/name="([^"]+)"/i);
+        const filenameMatch = disposition.match(/filename="([^"]*)"/i);
+        const bodyBinary = part.slice(idx + 4, part.length - 2); // remove trailing CRLF
+        if (filenameMatch && filenameMatch[1]) {
+          const filename = path.basename(filenameMatch[1]);
+          if (!assertFilename(filename, res)) return;
+          // Write file
+          try {
+            const fileBuffer = Buffer.from(bodyBinary, 'binary');
+            fs.writeFileSync(filename, fileBuffer);
+          } catch (err) {
+            console.error('Error writing uploaded file', err);
+            res.writeHead(500);
+            res.end();
+            return;
+          }
+        }
+      }
+    });
+    req.on('error', (err) => {
+      console.error('Request error', err);
+      res.writeHead(500);
+      res.end();
+    });
   }
 }
 
