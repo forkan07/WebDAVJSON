@@ -4,7 +4,7 @@ import { createServer as createSecureServer } from 'https';
 import { createServer as createInsecureServer } from 'http';
 import url from 'url';
 
-const allowedExtensions = ['txt','jpg','png','webp','heic','gif','pdf','docx','xlsx','zip','mp4','gz'];
+const allowedExtensions = ['txt','jpg','png','webp','heic','gif','pdf','docx','xlsx','zip','mp4','gz','avif'];
 
 function getContentType(filename) {
   return {
@@ -15,6 +15,7 @@ function getContentType(filename) {
     webp: 'image/webp',
     heic: 'image/heic',
     gif: 'image/gif',
+    avif: 'image/avif',
     mp4: 'video/mp4',
     pdf: 'application/pdf',
     zip: 'application/zip',
