@@ -131,7 +131,7 @@ function requestHandler(req, res) {
       res.end();
     }
   } else {
-    res.writeHead(405);
+    res.writeHead(204);
     res.end();
   }
 }
