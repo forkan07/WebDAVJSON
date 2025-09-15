@@ -111,7 +111,7 @@ function upload(req, res, query) {
     const m = contentType.match(/boundary=(?:"?)([^;\s"]+)(?:"?)/i);
     if (!m) {
       res.writeHead(400);
-      res.end('Missing boundary');
+      res.end();
       return;
     }
     const boundary = '--' + m[1];
@@ -129,9 +129,8 @@ function upload(req, res, query) {
         if (idx === -1) continue;
         const rawHeaders = part.slice(0, idx).split('\r\n');
         let disposition = rawHeaders.find(h => h.toLowerCase().startsWith('content-disposition')) || '';
-        const nameMatch = disposition.match(/name="([^"]+)"/i);
         const filenameMatch = disposition.match(/filename="([^"]*)"/i);
-        const bodyBinary = part.slice(idx + 4, part.length - 2); // remove trailing CRLF
+        const bodyBinary = part.slice(idx + 4);
         if (filenameMatch && filenameMatch[1]) {
           const filename = path.basename(filenameMatch[1]);
           if (!assertFilename(filename, res)) return;
@@ -147,6 +146,7 @@ function upload(req, res, query) {
           }
         }
       }
+      res.end();
     });
     req.on('error', (err) => {
       console.error('Request error', err);
