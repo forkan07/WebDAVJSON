@@ -16,7 +16,7 @@ WebDAVJSON is a simple PHP/Node.js script that provides file management APIs. It
 ## Windows Setup
 
 ```powershell
-winget install FiloSottile.mkcert Node.js --silent
+winget install mkcert Node.js --silent
 mkcert -install
 mkcert localhost
 node index.mjs
