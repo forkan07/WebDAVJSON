@@ -72,6 +72,11 @@ curl -F "file=@abc.txt" http://localhost/
 curl -X PUT --data-binary @abc.txt "http://localhost/?filename=abc.txt"
 ```
 
+```javascript
+const blob = await fetch($0.src).then(r=>r.blob())
+await fetch('https://localhost:8443/?filename=image.png', {method: 'POST', body: blob})
+```
+
 ### Delete file
 ```bash
 curl -X DELETE "http://localhost/?filename=abc.txt"
